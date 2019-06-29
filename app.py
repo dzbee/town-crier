@@ -20,5 +20,7 @@ register_index_endpoints(app)
 register_encounter_endpoints(app)
 register_character_endpoints(app)
 
+from models import *
+
 if __name__ == '__main__':
     app.run()
