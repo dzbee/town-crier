@@ -1,20 +1,24 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap
+
+from config import Config
 
 from services.index import register_index_endpoints
 from services.encounter import register_encounter_endpoints
+from services.character import register_character_endpoints
 
-def initialize_app(testing=False):
-    app = Flask(__name__)
-    if testing:
-        app.config['SECRET_KEY'] = 'testing'
+app = Flask(__name__)
+app.config.from_object(Config)
 
-    Bootstrap(app)
+db = SQLAlchemy(app)
+Migrate(app, db)
+Bootstrap(app)
 
-    register_index_endpoints(app)
-    register_encounter_endpoints(app)
-
-    return app
+register_index_endpoints(app)
+register_encounter_endpoints(app)
+register_character_endpoints(app)
 
 if __name__ == '__main__':
-    initialize_app(testing=True).run()
+    app.run()
