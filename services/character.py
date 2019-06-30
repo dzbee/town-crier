@@ -7,7 +7,7 @@ from lib.character import GENDER, RACES, CLASSES
 class CharacterForm(FlaskForm):
     name = StringField("Name")
     gender = SelectField("Gender", validators=[validators.DataRequired()],
-                         coerce=int, choicse=GENDER)
+                         coerce=int, choices=GENDER)
     race = SelectField("Race", validators=[validators.DataRequired()],
                        coerce=int, choices=RACES)
     role = SelectField("Class", validators=[validators.DataRequired()],
