@@ -2,6 +2,6 @@
 *.nogit
 *.pyc
 .venv
-*#*#
+*#*
 __pycache__
 *.db
